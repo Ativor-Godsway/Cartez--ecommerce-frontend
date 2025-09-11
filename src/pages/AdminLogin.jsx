@@ -16,7 +16,7 @@ export default function AdminLogin() {
     try {
       // Send login request
       const res = await axios.post(
-        "http://localhost:3000/api/admin/login",
+        "https://nike-backend-n1h9.vercel.app/api/admin/login",
         data
       );
 
