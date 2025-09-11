@@ -18,10 +18,11 @@ const Checkout = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     try {
       const order = {
         products: cartItems.map((item) => ({
+          id: item._id,
           product: item.name,
           quantity: item.quantity,
         })),
@@ -30,8 +31,8 @@ const Checkout = () => {
         status: "pending",
         ...data,
       };
-      addOrder(order);
-      console.log(order);
+      await addOrder(order).unwrap();
+      document.getElementById("my_modal_2").showModal();
     } catch (error) {
       console.error(error);
       toast.error("Error Adding Item!");
@@ -154,29 +155,27 @@ const Checkout = () => {
             {/* Submit */}
             <button
               className={`btn bg-black text-white hover:bg-[#6d6d6d] rounded-full w-full py-2 my-5 mt-5 text-[1.2rem] `}
-              onClick={() => document.getElementById("my_modal_2").showModal()}
             >
               Place Order
             </button>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-
-            <dialog id="my_modal_2" className="modal">
-              <div className="modal-box">
-                <h3 className="font-bold text-2xl font-serif flex gap-3 items-center ">
-                  <IoIosCheckmarkCircle className="text-green-600 size-10" />{" "}
-                  Order Succesful!
-                </h3>
-                <p className="py-4">
-                  Your order has been placed successfully! Our sales
-                  representative will contact you as soon as your order is ready
-                  for delivery.
-                </p>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button onClick={() => navigate("/")}>close</button>
-              </form>
-            </dialog>
           </form>
+          <dialog id="my_modal_2" className="modal">
+            <div className="modal-box">
+              <h3 className="font-bold text-2xl font-serif flex gap-3 items-center ">
+                <IoIosCheckmarkCircle className="text-green-600 size-10" />{" "}
+                Order Succesful!
+              </h3>
+              <p className="py-4">
+                Your order has been placed successfully! Our sales
+                representative will contact you as soon as your order is ready
+                for delivery.
+              </p>
+            </div>
+            <form method="dialog" className="modal-backdrop">
+              <button onClick={() => navigate("/")}>close</button>
+            </form>
+          </dialog>
         </div>
         <div className="border rounded-xl h-fit p-3 w-full md:w-[30vw]">
           <h2 className="text-[1.6rem] md:text-3xl">Summary</h2>

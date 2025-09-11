@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import {
   useDeleteOrderMutation,
@@ -58,9 +59,9 @@ const AdminOrders = () => {
           {/* Table Body */}
           <tbody>
             {orders.map((order, index) => (
-              <>
+              <React.Fragment key={index}>
                 {/* Summary Row */}
-                <tr key={order._id} className="">
+                <tr className="">
                   <td className="align-top">
                     <div className="flex flex-col md:flex-row gap-1">
                       <input
@@ -165,7 +166,7 @@ const AdminOrders = () => {
                     </td>
                   </tr>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </tbody>
         </table>

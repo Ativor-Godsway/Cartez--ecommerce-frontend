@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://nike-backend-n1h9.vercel.app/api",
+  baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api`,
   credentials: "include",
   prepareHeaders: (headers) => {
     const token = localStorage.getItem("cartezAdminToken"); // adjust based on your auth slice

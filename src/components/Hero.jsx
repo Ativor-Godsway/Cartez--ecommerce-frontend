@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div
-      className="hero h-[80vh] flex flex-col  items-center justify-end pb-5 md:pb-20 text-white bg-cover  bg-center bg-[url('banner2.jpg')] lg:bg-[url('banner4.jpg')] relative"
+      className="hero h-[80vh] flex flex-col  items-center justify-end pb-5 md:pb-20 text-white bg-cover  bg-center bg-[url('/banner2.jpg')] lg:bg-[url('/banner4.jpg')] relative"
       // style={{
       //   backgroundImage: `url(banner2.jpg)`,
       //   backgroundSize: "cover",

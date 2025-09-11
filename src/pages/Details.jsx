@@ -10,9 +10,6 @@ const Details = () => {
   const { id } = useParams();
   const { data } = useGetProductQuery(id);
   const product = data ? data : {};
-  console.log(product);
-  console.log(id);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

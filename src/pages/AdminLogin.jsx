@@ -15,7 +15,7 @@ export default function AdminLogin() {
     try {
       // Send login request
       const res = await axios.post(
-        "https://nike-backend-n1h9.vercel.app/api/admin/login",
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/login`,
         data
       );
 

@@ -7,7 +7,7 @@ import { clearCart } from "../redux/CartSlice";
 const Cart = () => {
   const { cartItems, totalPrice } = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  console.log(cartItems);
+
   const dispatch = useDispatch();
 
   return (
