@@ -2,9 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { data } from "react-router-dom";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://nike-backend-n1h9.vercel.app/api/products",
+  baseUrl: "https://nike-backend-n1h9.vercel.app/api",
   credentials: "include",
-  prepareHeaders: (headers, { getState }) => {
+  prepareHeaders: (headers) => {
     const token = localStorage.getItem("cartezAdminToken");
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
@@ -20,20 +20,20 @@ const ProductApi = createApi({
   endpoints: (builder) => ({
     // GET all Product items
     getProducts: builder.query({
-      query: () => "/",
+      query: () => "/products",
       providesTags: ["Product"],
     }),
 
     // GET a single Product item
     getProduct: builder.query({
-      query: (id) => `/${id}`,
+      query: (id) => `/products/${id}`,
       providesTags: (result, error, id) => [{ type: "Product", id }],
     }),
 
     // Add a new Product
     addProduct: builder.mutation({
       query: (formData) => ({
-        url: "/",
+        url: "/products",
         method: "POST",
         body: formData,
       }),
@@ -43,7 +43,7 @@ const ProductApi = createApi({
     // UPDATE a Product item
     updateProduct: builder.mutation({
       query: ({ id, ...data }) => ({
-        url: `/${id}`,
+        url: `/products/${id}`,
         method: "PUT",
         body: data,
       }),
@@ -53,7 +53,7 @@ const ProductApi = createApi({
     // DELETE a Product item
     deleteProduct: builder.mutation({
       query: (id) => ({
-        url: `/${id}`,
+        url: `/products/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Product"],

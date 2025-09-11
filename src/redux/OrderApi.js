@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://nike-backend-n1h9.vercel.app/api/orders",
+  baseUrl: "https://nike-backend-n1h9.vercel.app/api",
   credentials: "include",
-  prepareHeaders: (headers, { getState }) => {
+  prepareHeaders: (headers) => {
     const token = localStorage.getItem("cartezAdminToken"); // adjust based on your auth slice
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
@@ -19,20 +19,20 @@ const OrderApi = createApi({
   endpoints: (builder) => ({
     // GET all Order items
     getOrders: builder.query({
-      query: () => "/",
+      query: () => "/orders",
       providesTags: ["Order"],
     }),
 
     // GET a single Order item
     getOrder: builder.query({
-      query: (id) => `/${id}`,
+      query: (id) => `/orders/${id}`,
       providesTags: (result, error, id) => [{ type: "Order", id }],
     }),
 
     // Add a new Order
     addOrder: builder.mutation({
       query: (newOrder) => ({
-        url: "/",
+        url: "/orders",
         method: "POST",
         body: newOrder,
 
@@ -46,7 +46,7 @@ const OrderApi = createApi({
     // UPDATE a Order Status
     updateOrderStatus: builder.mutation({
       query: ({ id, ...status }) => ({
-        url: `/${id}`,
+        url: `/orders/${id}`,
         method: "PUT",
         body: status,
       }),
@@ -56,7 +56,7 @@ const OrderApi = createApi({
     // UPDATE a Order item
     updateOrder: builder.mutation({
       query: ({ id, ...rest }) => ({
-        url: `/${id}`,
+        url: `/orders/${id}`,
         method: "PUT",
         body: rest,
       }),
@@ -66,7 +66,7 @@ const OrderApi = createApi({
     // DELETE a Order item
     deleteOrder: builder.mutation({
       query: (id) => ({
-        url: `/${id}`,
+        url: `/orders/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Order"],
