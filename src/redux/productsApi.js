@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { data } from "react-router-dom";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3000/api/products",
+  baseUrl: "https://nike-backend-n1h9.vercel.app",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = localStorage.getItem("cartezAdminToken");

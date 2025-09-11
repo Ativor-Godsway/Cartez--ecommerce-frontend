@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3000/api/orders",
+  baseUrl: "https://nike-backend-n1h9.vercel.app",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = localStorage.getItem("cartezAdminToken"); // adjust based on your auth slice
