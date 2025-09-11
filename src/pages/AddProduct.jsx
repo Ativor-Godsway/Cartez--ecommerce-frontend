@@ -21,7 +21,6 @@ const AddProduct = () => {
       formData.append("category", data.category);
       formData.append("price", data.price);
       formData.append("image", data.image[0]); // grab the first file
-      console.log(formData);
 
       await addProduct(formData).unwrap();
       toast.success("Product added successfully!");

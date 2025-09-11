@@ -12,7 +12,6 @@ export default function AdminLogin() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       // Send login request
       const res = await axios.post(

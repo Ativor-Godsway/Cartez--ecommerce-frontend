@@ -12,7 +12,6 @@ import toast from "react-hot-toast";
 const Products = () => {
   const { data } = useGetProductsQuery();
   const products = data ? data : [];
-  console.log(products);
 
   const [deleteProduct] = useDeleteProductMutation();
 
